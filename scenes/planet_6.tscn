@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b17l8f5xb56a1"]
+
+[ext_resource type="Texture2D" uid="uid://cw0y1exq1qcqx" path="res://art/sprites/planet_6.png" id="1_kar3g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_21tk6"]
+radius = 156.0
+
+[node name="Planet_6" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kar3g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_21tk6")

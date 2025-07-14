@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxvw5qwlrep3u"]
+
+[ext_resource type="Texture2D" uid="uid://b8cca1uyns0ip" path="res://art/sprites/planet_8.png" id="1_yh7mr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q78n1"]
+radius = 185.0
+
+[node name="Planet_8" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yh7mr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q78n1")
