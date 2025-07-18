@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://taqw1yrjddti"]
+
+[ext_resource type="PackedScene" uid="uid://du2uraa75kkbb" path="res://scenes/player.tscn" id="1_o5qli"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+size = Vector2(500, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sugp2"]
+size = Vector3(500, 2, 1)
+
+[node name="Main" type="Node"]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_0wfyh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Ground"]
+mesh = SubResource("BoxMesh_sugp2")
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(0, -104)
+
+[node name="CameraPivot" type="Marker2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="CameraPivot"]
+offset = Vector2(0, -320)
