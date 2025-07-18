@@ -3,11 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://bmn0412nom3gw" path="res://art/sprites/planet_5.png" id="1_mu0dq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fi7n6"]
-radius = 140.0
+radius = 35.0
 
 [node name="Planet_5" type="RigidBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_mu0dq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
