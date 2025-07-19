@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 # Constants
-@export var JUMP_FORCE = -250.0
-@export var MAX_FALL_SPEED = 200.0
+@export var JUMP_FORCE: float = -250.0
+@export var MAX_FALL_SPEED: float = 500.0
 
 # Velocity
 var target_velocity: Vector2 = Vector2.ZERO
