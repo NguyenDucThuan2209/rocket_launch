@@ -22,6 +22,14 @@ func _ready() -> void:
 	for i in 10: 
 		spawn_planet()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed():
+		var key = event as InputEventKey
+		if key.keycode == KEY_UP:
+			camera.position -= Vector2(0, 100)
+		if key.keycode == KEY_DOWN: 
+			camera.position += Vector2(0, 100)
+
 func spawn_planet() -> void:
 	if planets.is_empty():
 		return
