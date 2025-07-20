@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://du2uraa75kkbb"]
+[gd_scene load_steps=5 format=3 uid="uid://du2uraa75kkbb"]
 
 [ext_resource type="Texture2D" uid="uid://logx6g0lgre7" path="res://art/sprites/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bol3iq7smbufp" path="res://scripts/player.gd" id="1_g2els"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(30, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(25, 50)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_g2els")
 
 [node name="Pivot" type="Node2D" parent="."]
@@ -16,6 +20,16 @@ position = Vector2(0, -25)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_3vyb7")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_qhqgy")
+debug_color = Color(0.83791, 0.344542, 0.460402, 0.42)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -25)
 shape = SubResource("RectangleShape2D_g2els")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
