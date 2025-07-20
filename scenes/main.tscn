@@ -17,12 +17,12 @@ size = Vector2(1000, 2)
 [sub_resource type="BoxMesh" id="BoxMesh_sugp2"]
 size = Vector3(1000, 2, 1)
 
-[node name="Main" type="Node" node_paths=PackedStringArray("camera", "planetHolder")]
+[node name="Main" type="Node" node_paths=PackedStringArray("camera", "planet_holder")]
 script = ExtResource("1_0wfyh")
 rowDistance = 150.0
 spawnOffset = Vector2(60, -90)
 camera = NodePath("CameraPivot/Camera2D")
-planetHolder = NodePath("PlanetHolder")
+planet_holder = NodePath("PlanetHolder")
 planets = Array[PackedScene]([ExtResource("2_choun"), ExtResource("3_ya4ey"), ExtResource("4_eb6dy"), ExtResource("5_trceg"), ExtResource("6_a8y0u"), ExtResource("7_jkv2x"), ExtResource("8_jbj1t"), ExtResource("9_muem4")])
 
 [node name="CameraPivot" type="Marker2D" parent="."]

@@ -4,20 +4,17 @@ extends Node
 @export var spawnOffset: Vector2
 
 @export var camera: Camera2D
-@export var planetHolder: Node2D
+@export var planet_holder: Node2D
 @export var planets: Array[PackedScene]
 
 var direction: float = 1
-var currentColumn: float = 0
-var currentHeight: float = 0
-var columnDistance: float = 0
+var current_column: float = 1
+var current_height: float = 0
+var column_distance: float = 0
 
 func _ready() -> void:
 	var screen_size = camera.get_viewport_rect().size
-	columnDistance = screen_size.x / 3
-	
-	print(screen_size)
-	print(columnDistance)
+	column_distance = screen_size.x / 3
 	
 	for i in 10: 
 		spawn_planet()
@@ -34,24 +31,24 @@ func spawn_planet() -> void:
 	if planets.is_empty():
 		return
 
-	var scene = planets[randi() % planets.size()]
-	var instance = scene.instantiate()
+	var planet = planets[randi() % planets.size()]
+	var instance = planet.instantiate()
 
 	# Calculate spawn position
-	var x = currentColumn * columnDistance + spawnOffset.x
-	var y = currentHeight + spawnOffset.y
+	var x = current_column * column_distance + spawnOffset.x
+	var y = current_height + spawnOffset.y
 
 	instance.position = Vector2(x, y)
-	add_child(instance)
+	planet_holder.add_child(instance)
 
 	# Update height for this column
-	currentHeight -= rowDistance 
+	current_height -= rowDistance 
 
 	# Move to next column
-	currentColumn += direction
-	if currentColumn >= 3:
-		currentColumn = 1
+	current_column += direction
+	if current_column >= 3:
+		current_column = 1
 		direction = -1
-	elif currentColumn < 0:
-		currentColumn = 1
+	elif current_column < 0:
+		current_column = 1
 		direction = 1
