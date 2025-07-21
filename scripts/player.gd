@@ -9,6 +9,7 @@ signal on_player_score
 var planet_pivot: Vector2
 var rotate_angle: float
 var planet_radius: float
+var current_min_height: float
 var is_player_flying: bool = false
 
 func _ready() -> void:
@@ -28,13 +29,16 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var circleShape = collision.shape as CircleShape2D
 		if circleShape != null:
 			is_player_flying = false
+
+			print("Old height: ", current_min_height, ", New height: ", body.position.y)
+			if body.position.y <   current_min_height:
+				current_min_height = body.position.y
+				on_player_score.emit()
 			
 			planet_pivot = body.position
 			planet_radius = circleShape.radius
 			
 			rotate_angle = (global_position - planet_pivot).angle()
-			
-			on_player_score.emit()
 
 func process_gravity(delta: float) -> void:
 	if is_player_flying:
@@ -46,10 +50,7 @@ func process_velocity(delta: float) -> void:
 		if Input.is_action_just_pressed("jump"):
 			rotate_angle = 0
 			is_player_flying = true
-			
-			print("JUMP!")
 			velocity = Vector2.UP.rotated(rotation) * JUMP_FORCE
-			print(velocity)
 
 func rotate_around_planet(delta: float) -> void:
 	if is_player_flying:
