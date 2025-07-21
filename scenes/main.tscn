@@ -19,10 +19,11 @@ size = Vector3(1000, 2, 1)
 
 [node name="Main" type="Node" node_paths=PackedStringArray("camera", "planet_holder")]
 script = ExtResource("1_0wfyh")
-rowDistance = 150.0
-spawnOffset = Vector2(60, -90)
+row_distance = 150.0
+spawn_offset = Vector2(60, -90)
 camera = NodePath("CameraPivot/Camera2D")
 planet_holder = NodePath("PlanetHolder")
+player = ExtResource("1_o5qli")
 planets = Array[PackedScene]([ExtResource("2_choun"), ExtResource("3_ya4ey"), ExtResource("4_eb6dy"), ExtResource("5_trceg"), ExtResource("6_a8y0u"), ExtResource("7_jkv2x"), ExtResource("8_jbj1t"), ExtResource("9_muem4")])
 
 [node name="CameraPivot" type="Marker2D" parent="."]
@@ -40,8 +41,5 @@ shape = SubResource("RectangleShape2D_0wfyh")
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Ground"]
 position = Vector2(500, 0)
 mesh = SubResource("BoxMesh_sugp2")
-
-[node name="Player" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(180, -200)
 
 [node name="PlanetHolder" type="Node2D" parent="."]

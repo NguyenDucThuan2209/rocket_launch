@@ -1,10 +1,12 @@
 extends Node
 
-@export var rowDistance: float
-@export var spawnOffset: Vector2
+@export var row_distance: float
+@export var spawn_offset: Vector2
+@export var camera_offset: Vector2
 
 @export var camera: Camera2D
 @export var planet_holder: Node2D
+@export var player: PackedScene
 @export var planets: Array[PackedScene]
 
 var direction: float = 1
@@ -27,6 +29,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if key.keycode == KEY_DOWN: 
 			camera.position += Vector2(0, 100)
 
+func spawn_player() -> void:
+	pass
+
 func spawn_planet() -> void:
 	if planets.is_empty():
 		return
@@ -35,14 +40,14 @@ func spawn_planet() -> void:
 	var instance = planet.instantiate()
 
 	# Calculate spawn position
-	var x = current_column * column_distance + spawnOffset.x
-	var y = current_height + spawnOffset.y
+	var x = current_column * column_distance + spawn_offset.x
+	var y = current_height + spawn_offset.y
 
 	instance.position = Vector2(x, y)
 	planet_holder.add_child(instance)
 
 	# Update height for this column
-	current_height -= rowDistance 
+	current_height -= row_distance 
 
 	# Move to next column
 	current_column += direction

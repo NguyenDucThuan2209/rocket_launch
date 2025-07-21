@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-@export var JUMP_FORCE: float = 250.0
+signal on_player_score
+
+@export var JUMP_FORCE: float = 350.0
 @export var MAX_FALL_SPEED: float = 500.0
 @export var ROCKET_ROTATE_SPEED: float = 1.0
 
@@ -31,6 +33,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			planet_radius = circleShape.radius
 			
 			rotate_angle = (global_position - planet_pivot).angle()
+			
+			on_player_score.emit()
 
 func process_gravity(delta: float) -> void:
 	if is_player_flying:
