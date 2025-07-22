@@ -28,6 +28,52 @@ camera = NodePath("CameraPivot/Camera2D")
 player = ExtResource("1_o5qli")
 planets = Array[PackedScene]([ExtResource("2_choun"), ExtResource("3_ya4ey"), ExtResource("4_eb6dy"), ExtResource("5_trceg"), ExtResource("6_a8y0u"), ExtResource("7_jkv2x"), ExtResource("8_jbj1t"), ExtResource("9_muem4")])
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+offset_right = 60.0
+offset_bottom = 23.0
+text = "Top-left"
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -71.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Top-right"
+
+[node name="Label3" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 89.0
+grow_vertical = 0
+text = "Bottom-left"
+
+[node name="Label4" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Bottom-right"
+
 [node name="CameraPivot" type="Marker2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="CameraPivot"]
