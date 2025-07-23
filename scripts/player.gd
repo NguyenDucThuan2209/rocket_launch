@@ -30,7 +30,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if circleShape != null:
 			is_player_flying = false
 
-			print("Old height: ", current_min_height, ", New height: ", body.position.y)
 			if body.position.y <   current_min_height:
 				current_min_height = body.position.y
 				on_player_score.emit()

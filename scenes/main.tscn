@@ -122,7 +122,6 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_jkv2x")
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="InGameUI" type="Control" parent="UILayer"]
-visible = false
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -383,6 +382,7 @@ size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxTexture_dp3eg")
 
 [node name="StartGameUI" type="Control" parent="UILayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

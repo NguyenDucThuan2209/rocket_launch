@@ -63,7 +63,7 @@ func spawn_planet() -> void:
 
 	# Set the planet position and parent
 	instance.position = Vector2(x, y)
-	$PlanetHolder.add_child(instance)
+	$PlanetHolder.call_deferred("add_child", instance)
 
 	# Update height for the next spawn
 	current_height -= row_distance 
@@ -79,5 +79,6 @@ func spawn_planet() -> void:
 
 func update_player_score() -> void:
 	score += 1
-	print("Score: ", score)
-	pass
+	spawn_planet()
+	if score % 2 != 0 && score > 1:
+		camera.position -= Vector2(0, 300)
