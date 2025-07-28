@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://taqw1yrjddti"]
+[gd_scene load_steps=38 format=3 uid="uid://taqw1yrjddti"]
 
 [ext_resource type="Script" uid="uid://dg31wxqoeo3ai" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://du2uraa75kkbb" path="res://scenes/player.tscn" id="1_o5qli"]
@@ -13,13 +13,17 @@
 [ext_resource type="Texture2D" uid="uid://0uy05fwa38n7" path="res://art/sprites/icon_background.png" id="11_a8y0u"]
 [ext_resource type="FontFile" uid="uid://d0h45aeoc2hp2" path="res://art/fonts/BungeeShade-Regular.ttf" id="11_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://cp2n4dfybrq0o" path="res://art/sprites/button_pause.png" id="12_trceg"]
+[ext_resource type="Script" uid="uid://vel445ipq64b" path="res://scripts/start_game_ui.gd" id="12_y6deb"]
+[ext_resource type="Script" uid="uid://db75xjfw2v25h" path="res://scripts/in_game_ui.gd" id="12_yc10j"]
 [ext_resource type="Texture2D" uid="uid://dcp7qp3tabdjq" path="res://art/sprites/button_sound.png" id="13_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://mw8ad6mppdxu" path="res://art/sprites/icon_pause.png" id="15_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://cijf6inycxq78" path="res://art/sprites/button_home.png" id="16_jbj1t"]
+[ext_resource type="Script" uid="uid://bobtclu7glxmp" path="res://scripts/pause_game_ui.gd" id="16_jscy8"]
 [ext_resource type="Texture2D" uid="uid://dsxk7nqpp1ium" path="res://art/sprites/button_replay.png" id="17_muem4"]
 [ext_resource type="FontFile" uid="uid://nj6wknaj8286" path="res://art/fonts/Inter_28pt-Medium.ttf" id="18_0ld40"]
 [ext_resource type="FontFile" uid="uid://b30c1a7msgjws" path="res://art/fonts/Inter_28pt-ExtraBold.ttf" id="19_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://cts630k77ymsp" path="res://art/sprites/icon_logo.png" id="20_gqmmt"]
+[ext_resource type="Script" uid="uid://bgqge5r7gi034" path="res://scripts/end_game_ui.gd" id="22_pm3ni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
 size = Vector2(1000, 2)
@@ -33,6 +37,17 @@ content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 texture = ExtResource("11_a8y0u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yc10j"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("20_gqmmt")
+
+[sub_resource type="LabelSettings" id="LabelSettings_gqmmt"]
+font = ExtResource("18_0ld40")
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_eb6dy"]
 font = ExtResource("11_ya4ey")
@@ -67,17 +82,6 @@ texture = ExtResource("17_muem4")
 [sub_resource type="LabelSettings" id="LabelSettings_muem4"]
 font = ExtResource("11_ya4ey")
 font_size = 55
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yc10j"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-texture = ExtResource("20_gqmmt")
-
-[sub_resource type="LabelSettings" id="LabelSettings_gqmmt"]
-font = ExtResource("18_0ld40")
-font_size = 30
 
 [node name="Main" type="Node" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_0wfyh")
@@ -121,7 +125,59 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_jkv2x")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
+[node name="StartGameUI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_y6deb")
+
+[node name="Background" type="Panel" parent="UILayer/StartGameUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jkv2x")
+
+[node name="Logo" type="Panel" parent="UILayer/StartGameUI"]
+custom_minimum_size = Vector2(420, 130)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -120.0
+offset_right = 210.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_yc10j")
+
+[node name="Label" type="Label" parent="UILayer/StartGameUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.5
+offset_top = 130.0
+offset_right = 81.5
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tab To Start"
+label_settings = SubResource("LabelSettings_gqmmt")
+horizontal_alignment = 1
+
 [node name="InGameUI" type="Control" parent="UILayer"]
+visible = false
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -131,6 +187,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("12_yc10j")
 
 [node name="Score" type="Label" parent="UILayer/InGameUI"]
 custom_minimum_size = Vector2(100, 55)
@@ -179,6 +236,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("16_jscy8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/PauseGameUI"]
 layout_mode = 1
@@ -234,7 +292,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxTexture_dp3eg")
 
-[node name="EndGameUI" type="Control" parent="UILayer"]
+[node name="EndGameUI" type="Control" parent="UILayer" node_paths=PackedStringArray("scoreLabel", "bestLabel")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -242,6 +300,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("22_pm3ni")
+scoreLabel = NodePath("VBoxContainer/VBoxContainer/ScoreBox/Score")
+bestLabel = NodePath("VBoxContainer/VBoxContainer/BestBox/Best")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/EndGameUI"]
 layout_mode = 1
@@ -381,44 +442,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxTexture_dp3eg")
 
-[node name="StartGameUI" type="Control" parent="UILayer"]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Logo" type="Panel" parent="UILayer/StartGameUI"]
-custom_minimum_size = Vector2(420, 130)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = -120.0
-offset_right = 210.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_yc10j")
-
-[node name="Label" type="Label" parent="UILayer/StartGameUI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -81.5
-offset_top = 130.0
-offset_right = 81.5
-offset_bottom = 168.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Tab To Start"
-label_settings = SubResource("LabelSettings_gqmmt")
-horizontal_alignment = 1
+[connection signal="mouse_entered" from="UILayer/StartGameUI/Background" to="UILayer/StartGameUI" method="_on_background_mouse_entered"]
+[connection signal="pressed" from="UILayer/InGameUI/PauseButton" to="UILayer/InGameUI" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="UILayer/InGameUI/SoundButton" to="UILayer/InGameUI" method="_on_sound_button_pressed"]
+[connection signal="pressed" from="UILayer/PauseGameUI/VBoxContainer/HBoxContainer/HomeButton" to="UILayer/PauseGameUI" method="_on_home_button_pressed"]
+[connection signal="pressed" from="UILayer/PauseGameUI/VBoxContainer/HBoxContainer/ReplayButton" to="UILayer/PauseGameUI" method="_on_replay_button_pressed"]
+[connection signal="pressed" from="UILayer/EndGameUI/VBoxContainer/HBoxContainer/HomeButton" to="UILayer/EndGameUI" method="_on_home_button_pressed"]
+[connection signal="pressed" from="UILayer/EndGameUI/VBoxContainer/HBoxContainer/ReplayButton" to="UILayer/EndGameUI" method="_on_replay_button_pressed"]
