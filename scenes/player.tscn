@@ -10,6 +10,7 @@ size = Vector2(30, 55)
 size = Vector2(25, 50)
 
 [node name="Player" type="CharacterBody2D"]
+process_mode = 1
 collision_mask = 2
 script = ExtResource("1_g2els")
 
